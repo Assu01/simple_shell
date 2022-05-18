@@ -33,10 +33,11 @@ int get_path_count(char *path)
 char **get_path_array(char **env)
 {
 	unsigned int i, j, path_count;
-	int compare = 0;
+	int compare;
 	char *token, *token2,  *mypath;
 	char **path_array;
 
+	compare = 0;
 	i = 0;
 	j = 0;
 	while (env[i] != NULL)
@@ -46,11 +47,14 @@ char **get_path_array(char **env)
 		{
 			mypath = _strdup(env[i]);
 			path_count = get_path_count(mypath);
+
 			token = strtok(mypath, "=");
 			token = strtok(NULL, "=");
+
 			path_array = malloc(sizeof(char *) * (path_count + 1));
 			if (path_array == NULL)
 				return (NULL);
+
 			if (token[0] == ':')
 			{
 				path_array[j] = _strdup("./");
@@ -58,8 +62,10 @@ char **get_path_array(char **env)
 				token2 = strtok(token, ":");
 				token2 = strtok(NULL, ":");
 			}
+
 			else
 				token2 = strtok(token, ":");
+
 			while (j < path_count)
 			{
 				path_array[j] = _strdup(token2);
@@ -69,8 +75,11 @@ char **get_path_array(char **env)
 		}
 		i++;
 	}
+
 	path_array[path_count] = NULL;
+
 	free(mypath);
+
 	return (path_array);
 }
 
@@ -84,27 +93,34 @@ char **get_path_array(char **env)
 
 char *find_path(char **path_array, char *command)
 {
-	int i, j, ok_f = 0, ok_x = 0, dir_len, com_len, total_len;
+	int i, j, ok_f, ok_x, dir_len, com_len, total_len;
 	char *path;
 
+	ok_f = 0;
+	ok_x = 0;
 	for (i = 0; path_array[i] != NULL; i++)
 	{
 		dir_len = _strlen(path_array[i]);
 		com_len = _strlen(command);
 		total_len = dir_len + com_len;
+
 		path = malloc(sizeof(char) * (total_len + 2));
 		if (path == NULL)
 		{
 			free_array(path_array);
 			return (NULL);
 		}
+
 		j = 0;
+
 		while (j < dir_len)
 		{
 			path[j] = path_array[i][j];
 			j++;
 		}
+
 		path[j] = '/';
+
 		j = 0;
 		while (j < com_len)
 		{
@@ -112,17 +128,23 @@ char *find_path(char **path_array, char *command)
 			j++;
 		}
 		path[total_len + 1] = '\0';
+
 		ok_f = access(path, F_OK);
 		ok_x = access(path, X_OK);
+
 		if (ok_f == 0)
 		{
 			if (ok_x == 0)
 				return (path);
-			free(path);
-			return ("no_access");
+			else
+			{
+				free(path);
+				return ("no_access");
+			}
 		}
 		free(path);
 	}
+
 	return (NULL);
 }
 

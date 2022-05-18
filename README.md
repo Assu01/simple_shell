@@ -18,7 +18,7 @@
 
 ## Description
 
-**hella_shell** is a simple command line interpreter based on the first Unix shell 'sh', created by Ken Thompson in 1971. **hella_shell** is intentionally minimalistic and contains functionality for only the most basic shell tasks - accepting input, parsing the input into a command and its arguments, and executing that input. Error checking is simple and follows Bash conventions.
+**hella_shell** is a simple command line interpreter based on the Bash shell, written by Brian Fox in 1989. **hella_shell** is intentionally minimalistic and contains functionality for only the most basic shell tasks - accepting input, parsing the input into a command and its arguments, and executing that input. Error checking is simple and follows Bash conventions.
 
 ## Purpose
 
@@ -54,14 +54,11 @@ The purpose of the simple shell project is to understand:
   * `command_error` - command not found error
   * `exec_error` - command could not execute error
   * `access_error` - user does not have permission to execute command
-  * `exit_error` - user has entered an invalid exit code
 * [fork_wait_exec.c](fork_wait_exec.c) - process and execution function
 * [memory_helpers.c](memory_helpers.c) - helper functions related to memory management
+  * `_realloc` - memory reallocation function
   * `free_array` - 2D array freeing function
 * [man_1_simple_shell](man_1_simple_shell) - manual page
-* [number_helpers.c](number_helpers.c) - helper functions pertaining to integers
-  * `_atoi` - turns a numerical string into an integer
-  * `print_number` - prints an integer to standard output
 * [parse_input.c](parse_input.c) - command and argument parsing function
 * [shell.c](shell.c) - main function
 * [shell.h](shell.h) - header file
@@ -69,7 +66,7 @@ The purpose of the simple shell project is to understand:
   * `_strlen` - finds length of a string
   * `_strcmp` - compares two strings
   * `_strdup` - duplicates two strings (including memory management)
-  * `_putchar` - writes a single character to standard output
+  * `_atoi` - turns a numerical string into an integer
 
 ## Compilation
 
@@ -107,7 +104,7 @@ At this time, there are no known bugs.
 
 ## Authors
 
-Lizzie Turner | [GitHub](https://github.com/lizzieturner) | [Twitter](https://twitter.com/_lizzieturner_)
+Lizzie Turner | [GitHub](https://github.com/lizzieturner) | [Twitter](https://twitter.com/_lizzieturner_)  
 Omar Contreras | [GitHub](https://github.com/aucontraire) | [Twitter](https://twitter.com/_au_contraire)
 
 ## License

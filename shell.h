@@ -9,49 +9,37 @@
 #include <sys/wait.h>
 #include <signal.h>
 
-extern int exitcode;
-extern int errorcount;
-
 /* check_helpers */
-int exit_check(char *user_input, char *NAME);
+int exit_check(char *user_input);
 int blank_check(char *user_input);
 int path_check(char *command);
 int env_check(char *user_input);
 
 /* error_helpers */
-void command_error(char *NAME, char *command);
+void command_error(char *NAME, char *command, int atty);
 void exec_error(char *NAME, char *command);
 void access_error(char *NAME, char *command);
-void exit_error(char *NAME, char *user_input);
 
 /* fork_wait_exec */
-void fork_wait_exec(char **commands, char **path_array,
-		    char **env, char *NAME, char *user_input);
+void fork_wait_exec(char **commands, char **path_array, char **env, char *NAME, char *user_input);
 
 /* memory_helpers */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void free_array(char **array);
 
-/* number_helpers */
-int _atoi(char *s);
-void print_number(int n);
-
 /* parse_input */
-int arg_counter(char *user_input);
-char **parse_input(char *user_input, char **path_array, char *NAME);
+char **parse_input(char *user_input, char **path_array, char *NAME, int atty);
 
 /* string_helpers */
 int _strlen(char *str);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
-int _putchar(char c);
+int _atoi(char *s);
 
 /* env_helpers */
 int get_path_count(char *path);
 char **get_path_array(char **env);
 char *find_path(char **path_array, char *token);
 void print_env(char **env);
-
-/* splash screen */
-void display_splash_screen(FILE *file_ptr);
 
 #endif

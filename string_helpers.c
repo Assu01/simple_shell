@@ -73,13 +73,37 @@ char *_strdup(char *str)
 }
 
 /**
-* _putchar - prints a single character to stdout
-* @c: The character to print
-*
-* Return: 1 if successful, -1 otherwise
-*/
+ * _atoi - turns a string into an integer
+ * @s: string
+ *
+ * Return: integer
+ */
 
-int _putchar(char c)
+int _atoi(char *s)
 {
-	return (write(STDOUT_FILENO, &c, 1));
+	unsigned int index, neg_counter, num;
+
+	index = 0;
+	neg_counter = 0;
+
+	while (!(s[index] >= '0' && s[index] <= '9') && s[index] != '\0')
+	{
+		if (s[index] == '-')
+			neg_counter++;
+
+		index++;
+	}
+
+	num = 0;
+
+	while (s[index] >= '0' && s[index] <= '9')
+	{
+		num = (s[index] - '0') + (num * 10);
+		index++;
+	}
+
+	if (neg_counter % 2 != 0)
+		num = -num;
+
+	return (num);
 }
