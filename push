@@ -1,5 +1,0 @@
-#!/bin/bash
-read -p "enter commit name:"
-git add .
-git commit -m$REPLY
-git push
