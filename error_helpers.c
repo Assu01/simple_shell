@@ -7,10 +7,16 @@
  *
  */
 
-void command_error(__attribute__((unused)) char *NAME, char *command)
+void command_error(char *NAME, char *command)
 {
-	write(STDOUT_FILENO, command, _strlen(command));
-	write(STDOUT_FILENO, ": command not found\n", 20);
+	write(STDERR_FILENO, NAME, _strlen(NAME));
+	write(STDERR_FILENO, ": ", 2);
+	print_number(errorcount);
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, command, _strlen(command));
+	write(STDERR_FILENO, ": not found\n", 13);
+
+	exitcode = 127;
 }
 
 /**
@@ -19,11 +25,10 @@ void command_error(__attribute__((unused)) char *NAME, char *command)
  * @command: name of command
  */
 
-void exec_error(char *NAME, char *command)
+void exec_error(__attribute__((unused))char *NAME, char *command)
 {
-	write(STDOUT_FILENO, NAME, _strlen(NAME));
-	write(STDOUT_FILENO, ": ", 2);
 	perror(command);
+	exitcode = 2;
 }
 
 /**
@@ -34,8 +39,32 @@ void exec_error(char *NAME, char *command)
 
 void access_error(char *NAME, char *command)
 {
-	write(STDOUT_FILENO, NAME, _strlen(NAME));
-	write(STDOUT_FILENO, ": ", 2);
-	write(STDOUT_FILENO, command, _strlen(command));
-	write(STDOUT_FILENO, ": Permission denied\n", 20);
+	write(STDERR_FILENO, NAME, _strlen(NAME));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, command, _strlen(command));
+	write(STDERR_FILENO, ": Permission denied\n", 20);
+
+
+}
+
+
+/**
+ * exit_error - prints message if user inputs an invalid exit status
+ * @NAME: name of program
+ * @user_input: user input read by program
+ */
+
+void exit_error(char *NAME, char *user_input)
+{
+	char *token;
+
+	token = strtok(user_input, "\n ");
+	token = strtok(NULL, "\n ");
+
+	write(STDERR_FILENO, NAME, _strlen(NAME));
+	write(STDERR_FILENO, ": ", 2);
+	print_number(errorcount);
+	write(STDERR_FILENO, ": exit: Illegal number: ", 24);
+	write(STDERR_FILENO, token, _strlen(token));
+	write(STDERR_FILENO, "\n", 1);
 }
