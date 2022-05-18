@@ -12,29 +12,24 @@
 int main(__attribute__((unused)) int argc, char **argv, char **env)
 {
 	char *user_input;
-	size_t nbytes;
-	ssize_t bytes_read;
+	size_t nbytes = 0;
+	ssize_t bytes_read = 0;
 	char **commands, **path_array;
-	static char *NAME;
-/*	int is_atty;*/
+	char *NAME = argv[0];
+	int atty_is = isatty(0);
 
-	NAME = argv[0];
 	user_input = NULL;
-	nbytes = 0;
 	commands = NULL;
 	path_array = NULL;
-/*	is_atty = isatty( */
 
 	while (1)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		if (atty_is)
+			write(STDOUT_FILENO, "hella_shell$ ", 13);
 
 		bytes_read = getline(&user_input, &nbytes, stdin);
 		if (bytes_read == -1)
-		{
-			perror(NAME);
-			break;
-		}
+			exit(2);
 
 		if (bytes_read == 5)
 			exit_check(user_input);
@@ -49,7 +44,7 @@ int main(__attribute__((unused)) int argc, char **argv, char **env)
 		}
 
 		path_array = get_path_array(env);
-		commands = parse_input(user_input, path_array, NAME);
+		commands = parse_input(user_input, path_array, NAME, atty_is);
 
 		if (commands != NULL)
 		{

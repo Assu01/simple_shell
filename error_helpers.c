@@ -4,13 +4,26 @@
  * command_error - prints error message when command is not found
  * @NAME: name of program
  * @command: command not found
+ * @atty: denotes interactive or non-interactive mode
  *
  */
 
-void command_error(__attribute__((unused)) char *NAME, char *command)
+void command_error(char *NAME, char *command, int atty)
 {
-	write(STDOUT_FILENO, command, _strlen(command));
-	write(STDOUT_FILENO, ": command not found\n", 20);
+	if (atty)
+	{
+		write(STDOUT_FILENO, command, _strlen(command));
+		write(STDOUT_FILENO, ": command not found\n", 20);
+	}
+
+	else
+	{
+		write(STDOUT_FILENO, NAME, _strlen(NAME));
+		write(STDOUT_FILENO, ": 1: ", 5);
+		write(STDOUT_FILENO, command, _strlen(command));
+		write(STDOUT_FILENO, ": not found\n", 12);
+	}
+
 }
 
 /**
