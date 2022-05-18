@@ -7,34 +7,30 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <signal.h>
 
 /* check_helpers */
-int exit_check(char *user_input);
+void exit_check(char *user_input);
 int blank_check(char *user_input);
 int path_check(char *command);
 int env_check(char *user_input);
 
 /* error_helpers */
-void command_error(char *NAME, char *command, int atty);
+void command_error(char *NAME, char *command);
 void exec_error(char *NAME, char *command);
-void access_error(char *NAME, char *command);
 
 /* fork_wait_exec */
 void fork_wait_exec(char **commands, char **path_array, char **env, char *NAME, char *user_input);
 
-/* memory_helpers */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+/* free_array */
 void free_array(char **array);
 
 /* parse_input */
-char **parse_input(char *user_input, char **path_array, char *NAME, int atty);
+char **parse_input(char *user_input, char **path_array, char *NAME);
 
 /* string_helpers */
 int _strlen(char *str);
-int _strcmp(char *s1, char *s2);
+char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
-int _atoi(char *s);
 
 /* env_helpers */
 int get_path_count(char *path);

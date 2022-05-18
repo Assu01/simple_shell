@@ -1,16 +1,14 @@
 #include "shell.h"
 
 /**
- * parse_input - parses user_input to create an array of strings
+ * parse_input - parsers user_input to create an array of strings
  * @user_input: string to tokenize
  * @path_array: array of directories in PATH
- * @NAME: name of program
- * @atty: denotes interactive or non-interactive mode
  *
  * Return: an array of arguments
  */
 
-char **parse_input(char *user_input, char **path_array, char *NAME, int atty)
+char **parse_input(char *user_input, char **path_array, char *NAME)
 {
 	char **commands;
 	char *token, *dir_path;
@@ -32,36 +30,22 @@ char **parse_input(char *user_input, char **path_array, char *NAME, int atty)
 	}
 
 	commands = malloc(sizeof(char *) * (args + 1));
-	if (commands == NULL)
-	{
-		free_array(path_array);
-		return (NULL);
-	}
 	token = strtok(user_input, "\n ");
 
 	if (path_check(token) == -1)
 	{
 		dir_path = find_path(path_array, token);
-
-		if (dir_path == NULL)
-		{
-			free(commands);
-			free_array(path_array);
-			command_error(NAME, token, atty);
-			return (NULL);
-		}
-		else if (_strcmp("no_access", dir_path) == 0)
-		{
-			free(commands);
-			free(path_array);
-			access_error(NAME, token);
-			return (NULL);
-		}
-
-		else
+		if (dir_path != NULL)
 		{
 			commands[0] = _strdup(dir_path);
 			free(dir_path);
+		}
+		else
+		{
+			free(commands);
+			free_array(path_array);
+			command_error(NAME, token);
+			return (NULL);
 		}
 	}
 

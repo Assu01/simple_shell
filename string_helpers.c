@@ -19,27 +19,26 @@ int _strlen(char *str)
 
 
 /**
- * _strcmp - compares two strings
- * @s1: first string
- * @s2: second string
- *
- * Return: difference of two strings (first minus second) or 0 if equal
+ * _strcat - concatenates two strings
+ * @dest: destination char
+ * @src: source char
+ * Return: new char
  */
 
-int _strcmp(char *s1, char *s2)
+char *_strcat(char *dest, char *src)
 {
-	int index;
+	int i;
+	int n = 0;
 
-	for (index = 0; s1[index] != '\0' && s2[index] != '\0'; index++)
+	while (dest[n] != '\0')
 	{
-		if (s1[index] < s2[index])
-			return (s1[index] - s2[index]);
-
-		else if (s1[index] > s2[index])
-			return (s1[index] - s2[index]);
+		n++;
 	}
+	for (i = 0 ; i < n && src[i] != '\0' ; i++)
+		dest[n + i] = src[i];
+	dest[n + i] = '\0';
 
-	return (0);
+	return (dest);
 }
 
 
@@ -70,40 +69,4 @@ char *_strdup(char *str)
 	arr[i] = '\0';
 
 	return (arr);
-}
-
-/**
- * _atoi - turns a string into an integer
- * @s: string
- *
- * Return: integer
- */
-
-int _atoi(char *s)
-{
-	unsigned int index, neg_counter, num;
-
-	index = 0;
-	neg_counter = 0;
-
-	while (!(s[index] >= '0' && s[index] <= '9') && s[index] != '\0')
-	{
-		if (s[index] == '-')
-			neg_counter++;
-
-		index++;
-	}
-
-	num = 0;
-
-	while (s[index] >= '0' && s[index] <= '9')
-	{
-		num = (s[index] - '0') + (num * 10);
-		index++;
-	}
-
-	if (neg_counter % 2 != 0)
-		num = -num;
-
-	return (num);
 }
