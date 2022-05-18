@@ -6,31 +6,39 @@
  *
  * @commands: array of strings
  * commands[0] is command to execute
+ * @path_array: array of directories in PATH
  * @env: array of environment variables
  * remaining strings are arguments to use with that command
+ * @NAME: name of program
+ * @user_input: input string
  */
 
-void fork_wait_exec(char **commands, char **env)
+void fork_wait_exec(char **commands, char **path_array, char **env, char *NAME, char *user_input)
 {
 	pid_t pid;
-	int status;
+	int status, exec_check;
 
 	status = 0;
 	pid = fork();
 
 	if (pid == -1)
 	{
-		perror("fork failure");
+		perror(NAME);
 		_exit(1);
 	}
 
 	else if (pid == 0)
 	{
-		if ((execve(commands[0], commands, env)) < 0)
+		exec_check = execve(commands[0], commands, env);
+
+		if (exec_check < 0)
 		{
-			perror(commands[0]);
-			_exit(1);
+			exec_error(NAME, commands[0]);
+			free_array(path_array);
+			free_array(commands);
+			free(user_input);
 		}
+
 		_exit(0);
 
 	}

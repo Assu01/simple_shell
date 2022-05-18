@@ -25,3 +25,17 @@ void exec_error(char *NAME, char *command)
 	write(STDOUT_FILENO, ": ", 2);
 	perror(command);
 }
+
+/**
+ * access_error - prints error message if user does not have execute privileges
+ * @NAME: name of program
+ * @command: name of command
+ */
+
+void access_error(char *NAME, char *command)
+{
+	write(STDOUT_FILENO, NAME, _strlen(NAME));
+	write(STDOUT_FILENO, ": ", 2);
+	write(STDOUT_FILENO, command, _strlen(command));
+	write(STDOUT_FILENO, ": Permission denied\n", 20);
+}

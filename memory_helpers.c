@@ -1,22 +1,19 @@
 #include "shell.h"
 
 /**
- * free_commands - free an array of strings
- * @commands: array to free
+ * free_array - free an array of strings
+ * @array: array to free
  */
 
-void free_commands(char **commands)
+void free_array(char **array)
 {
+	size_t i;
 
-/*
-	int i;
-
-	for (i = 0; commands[i] != NULL; i++)
+	for (i = 0; array[i] != '\0'; i++)
 	{
-		printf("about to free: %s\n", commands[i]);
-		free(commands[i]);
+		free(array[i]);
 	}
-*/
 
-	free(commands);
+	free(array);
+
 }

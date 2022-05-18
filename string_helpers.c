@@ -55,22 +55,18 @@ char *_strdup(char *str)
 
 	length = 0;
 	if (str == NULL)
-	{
 		return (NULL);
-	}
 
 	length = _strlen(str);
 
-	arr = malloc(length * sizeof(char) + 1);
+	arr = malloc((length + 1) * sizeof(char));
 	if (arr == NULL)
 		return (NULL);
 
 	for (i = 0; i < length; i++)
-	{
 		arr[i] = str[i];
-	}
-	arr[i] = '\0';
 
+	arr[i] = '\0';
 
 	return (arr);
 }

@@ -16,6 +16,7 @@ void exit_check(char *user_input)
 			return;
 	}
 
+	free(user_input);
 	exit(0);
 }
 
