@@ -13,7 +13,8 @@
  * @user_input: input string
  */
 
-void fork_wait_exec(char **commands, char **path_array, char **env, char *NAME, char *user_input)
+void fork_wait_exec(char **commands, char **path_array, char **env,
+		    char *NAME, char *user_input)
 {
 	pid_t pid;
 	int status, exec_check;

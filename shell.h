@@ -22,7 +22,7 @@ void access_error(char *NAME, char *command);
 /* fork_wait_exec */
 void fork_wait_exec(char **commands, char **path_array, char **env, char *NAME, char *user_input);
 
-/* memory_helpers */
+/* free_array */
 void free_array(char **array);
 
 /* parse_input */
@@ -30,7 +30,7 @@ char **parse_input(char *user_input, char **path_array, char *NAME);
 
 /* string_helpers */
 int _strlen(char *str);
-char *_strcat(char *dest, char *src);
+int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
 
 /* env_helpers */

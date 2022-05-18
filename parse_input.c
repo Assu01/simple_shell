@@ -31,25 +31,32 @@ char **parse_input(char *user_input, char **path_array, char *NAME)
 	}
 
 	commands = malloc(sizeof(char *) * (args + 1));
+	if (commands == NULL)
+	{
+		free_array(path_array);
+		return (NULL);
+	}
 	token = strtok(user_input, "\n ");
 
 	if (path_check(token) == -1)
 	{
 		dir_path = find_path(path_array, token);
-		if (strcmp("no_access", dir_path) == 0)
-		{
-			free(commands);
-			free_array(path_array);
-			access_error(NAME, token);
-			return (NULL);
-		}
-		else if (dir_path == NULL)
+
+		if (dir_path == NULL)
 		{
 			free(commands);
 			free_array(path_array);
 			command_error(NAME, token);
 			return (NULL);
 		}
+		else if (_strcmp("no_access", dir_path) == 0)
+		{
+			free(commands);
+			free(path_array);
+			access_error(NAME, token);
+			return (NULL);
+		}
+
 		else
 		{
 			commands[0] = _strdup(dir_path);

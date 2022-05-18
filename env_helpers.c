@@ -51,7 +51,6 @@ char **get_path_array(char **env)
 			if (path_array == NULL)
 				return (NULL);
 
-
 			token = strtok(mypath, "=:");
 			while (j < path_count)
 			{
@@ -96,7 +95,11 @@ char *find_path(char **path_array, char *command)
 		total_len = dir_len + com_len;
 
 		path = malloc(sizeof(char) * (total_len + 2));
-
+		if (path == NULL)
+		{
+			free_array(path_array);
+			return (NULL);
+		}
 		j = 0;
 		while (j < dir_len)
 		{

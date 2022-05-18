@@ -31,10 +31,7 @@ int main(__attribute__((unused)) int argc, char **argv, char **env)
 
 		bytes_read = getline(&user_input, &nbytes, stdin);
 		if (bytes_read == -1)
-		{
-			perror(NAME);
-			break;
-		}
+			exit(2);
 
 		if (bytes_read == 5)
 			exit_check(user_input);
