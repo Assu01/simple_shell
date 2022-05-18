@@ -1,0 +1,59 @@
+.\" Manpage for Simple Shell.
+.TH "Simple Shell" 3 "11 May, 2022" "3.0" "Simple Shell man page"
+
+.SH NAME
+hsh - Simple Shell
+
+.SH SYNOPSIS
+./hsh
+[command] [options]
+
+.SH DESCRIPTION
+Welcome to the Simple Shell project! This program is a simple shell that can be compiled and launched from the command line within any number of Linux versions.
+
+.SH OVERVIEW
+The Simple Shell project is a team project conducted by Eric Botchway and Klenam Tsagliy, students at ALX SE School.
+
+.SH RETURN VALUE
+The shell returns the error code given by the last completed command followed by either ctrl-d or exit with no status code.
+
+.SH SYNTAX
+($) <command> <flags or options> <argument 1> <argument 2> ...
+
+$ <command> | ./hsh
+.SS
+
+.SS
+EXAMPLE 1:
+($) /bin/ls
+.SS
+EXAMPLE 2:
+($) ls -l
+.SS
+EXAMPLE 3:
+($) cat textfile
+.SS
+
+
+.SS
+EXAMPLE 4:
+$ echo "ls -a" | ./hsh
+
+.SH BUILTIN COMMANDS
+
+.SS cd
+- change directory
+
+.SS env
+- list the current environment variable
+
+.SS exit
+- exit from shell
+
+
+
+.SH BUGS
+No known bugs
+
+.SH AUTHORS
+Asrat Asmelash Tsehaye, Mintesnot Bekele
