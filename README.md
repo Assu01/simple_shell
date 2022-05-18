@@ -3,7 +3,7 @@ Shell is a program that exposes the Operating System services to a user. The she
 
 
 ## Synopsis ##
-The simple shell project is done in two teams by Eric Botchway and Martha Klenam, Software Engineering students at ALX.
+The simple shell project is done in two teams by Asrat Asmelash Tsehaye, Mintesnot Bekele, Software Engineering students at ALX.
 In this project, one will find basic characteristics of the shell sysytem such as; Handling PATHS, implementing BUILT-INS and executing commands
 
 ## Description ##
@@ -27,7 +27,6 @@ This project was compiled using gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *
 ~ getline (man 3 getline)
 ~ getpid (man 2 getpid)
       
-   
-   
+      
    AUTHORS
         Asrat Asmelash Tsehaye, Mintesnot Bekele
