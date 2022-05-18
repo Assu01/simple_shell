@@ -104,7 +104,7 @@ char *get_env_value(char *beginning, int len)
  */
 void variable_replacement(char **line, int *exe_ret)
 {
-        int j, k = 0, len;
+	int j, k = 0, len;
 	char *replacement = NULL, *old_line = NULL, *new_line;
 
 	old_line = *line;
