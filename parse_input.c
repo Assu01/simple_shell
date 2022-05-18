@@ -14,7 +14,6 @@ char **parse_input(char *user_input, char **path_array, char *NAME)
 	char *token, *dir_path;
 	int args, i, start;
 
-	dir_path = NULL;
 	args = 1;
 	i = 0;
 	start = 0;
@@ -26,6 +25,7 @@ char **parse_input(char *user_input, char **path_array, char *NAME)
 		if (user_input[i] == ' ' && user_input[i + 1] != ' '
 		    && user_input[i + 1] != '\n' && start == 1)
 			args++;
+
 		i++;
 	}
 
@@ -42,22 +42,20 @@ char **parse_input(char *user_input, char **path_array, char *NAME)
 		}
 		else
 		{
+			perror(NAME);
+			free(dir_path);
 			free(commands);
-			free_array(path_array);
-			command_error(NAME, token);
 			return (NULL);
 		}
 	}
-
 	else
 		commands[0] = _strdup(token);
 
 	for (i = 1; i < args; i++)
 	{
-		token = strtok(0, "\n ");
+		token = strtok(NULL, "\n ");
 		commands[i] = _strdup(token);
 	}
-
 	commands[i] = NULL;
 
 	return (commands);

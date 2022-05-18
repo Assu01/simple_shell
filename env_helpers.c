@@ -34,7 +34,7 @@ char **get_path_array(char **env)
 {
 	unsigned int i, j, path_count;
 	int compare;
-	char *token, *mypath;
+	char *token, *path, *duptoken;
 	char **path_array;
 
 	compare = 0;
@@ -45,30 +45,27 @@ char **get_path_array(char **env)
 		compare = strncmp(env[i], "PATH", 4);
 		if (compare == 0)
 		{
-			mypath = _strdup(env[i]);
-			path_count = get_path_count(mypath);
-			path_array = malloc(sizeof(char *) * (path_count + 1));
+			path = _strdup(env[i]);
+			path_count = get_path_count(path);
+			path_array = malloc(sizeof(char *) * path_count + 1);
 			if (path_array == NULL)
 				return (NULL);
 
-
-			token = strtok(mypath, "=:");
+			token = strtok(path, "=:");
 			while (j < path_count)
 			{
 				if (token[0] != 'P')
 				{
-					path_array[j] = _strdup(token);
+					duptoken = _strdup(token);
+					path_array[j] = duptoken;
 					j++;
 				}
 				token = strtok(NULL, "=:");
 			}
+			/* do we have to add NULL string to end of array? */
 		}
 		i++;
 	}
-
-	path_array[path_count] = '\0';
-
-	free(mypath);
 
 	return (path_array);
 }
@@ -86,16 +83,14 @@ char *find_path(char **path_array, char *command)
 	int i, j, f_ok, dir_len, com_len, total_len;
 	char *path;
 
-	f_ok = 0;
-
-	for (i = 0; path_array[i] != NULL; i++)
+	i = 0;
+	while (path_array[i] != NULL)
 	{
 		dir_len = _strlen(path_array[i]);
 		com_len = _strlen(command);
+		total_len = dir_len + com_len + 2;
 
-		total_len = dir_len + com_len;
-
-		path = malloc(sizeof(char) * (total_len + 2));
+		path = malloc(sizeof(char) * total_len);
 
 		j = 0;
 		while (j < dir_len)
@@ -111,17 +106,13 @@ char *find_path(char **path_array, char *command)
 			path[dir_len + j + 1] = command[j];
 			j++;
 		}
-		path[total_len + 1] = '\0';
-
+		path[total_len] = '\0';
 		f_ok = access(path, F_OK);
-
 		if (f_ok == 0)
 			return (path);
 
-		else
-			free(path);
+		i++;
 	}
-
 	return (NULL);
 }
 

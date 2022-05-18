@@ -10,32 +10,27 @@
  * remaining strings are arguments to use with that command
  */
 
-void fork_wait_exec(char **commands, char **path_array, char **env, char *NAME, char *user_input)
+void fork_wait_exec(char **commands, char **env)
 {
 	pid_t pid;
-	int status, exec_check;
+	int status;
 
 	status = 0;
 	pid = fork();
 
 	if (pid == -1)
 	{
-		perror(NAME);
+		perror("fork failure");
 		_exit(1);
 	}
 
 	else if (pid == 0)
 	{
-		exec_check = execve(commands[0], commands, env);
-
-		if (exec_check < 0)
+		if ((execve(commands[0], commands, env)) < 0)
 		{
-			exec_error(NAME, commands[0]);
-			free_array(path_array);
-			free_array(commands);
-			free(user_input);
+			perror(commands[0]);
+			_exit(1);
 		}
-
 		_exit(0);
 
 	}

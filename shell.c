@@ -16,19 +16,15 @@ int main(__attribute__((unused)) int argc, char **argv, char **env)
 	ssize_t bytes_read;
 	char **commands, **path_array;
 	static char *NAME;
-/*	int is_atty;*/
 
 	NAME = argv[0];
 	user_input = NULL;
 	nbytes = 0;
 	commands = NULL;
 	path_array = NULL;
-/*	is_atty = isatty( */
-
 	while (1)
 	{
 		write(STDOUT_FILENO, "$ ", 2);
-
 		bytes_read = getline(&user_input, &nbytes, stdin);
 		if (bytes_read == -1)
 		{
@@ -50,14 +46,12 @@ int main(__attribute__((unused)) int argc, char **argv, char **env)
 
 		path_array = get_path_array(env);
 		commands = parse_input(user_input, path_array, NAME);
+		fork_wait_exec(commands, env);
+		free_commands(commands);
 
-		if (commands != NULL)
-		{
-			fork_wait_exec(commands, path_array, env, NAME, user_input);
-			free_array(commands);
-			free_array(path_array);
-		}
+		/*free(path_array);*/
+		/*path_array = NULL;*/
+		/*free(user_input);*/
 	}
-
 	return (0);
 }
