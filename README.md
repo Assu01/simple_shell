@@ -99,10 +99,9 @@ At this time, there are no known bugs.
 
 
 ## Authors
-
-Lizzie Turner | [GitHub](https://github.com/lizzieturner) | [Twitter](https://twitter.com/_lizzieturner_)  
-Omar Contreras | [GitHub](https://github.com/aucontraire) | [Twitter](https://twitter.com/_au_contraire)
+Minesnot Bekele<https://github.com/Minte123/alx-zero_day.git>
+Asrat Asmelash https://github.com/Assu01/simple_shell.git
 
 ## License
 
-**hella_shell** is open source and free to download and use
+**Simple_shell** is open source and free to download and use
