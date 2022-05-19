@@ -1,6 +1,4 @@
-# hella_shell
-
-![hella shell](https://s31.postimg.org/403ix8w7f/j1_IPt_Uu_IS51_N62_LB5z9_Qhg_r.jpg)
+# simple_Shell
 
 
 ## Table of Contents
@@ -18,7 +16,7 @@
 
 ## Description
 
-**hella_shell** is a simple command line interpreter based on the Bash shell, written by Brian Fox in 1989. **hella_shell** is intentionally minimalistic and contains functionality for only the most basic shell tasks - accepting input, parsing the input into a command and its arguments, and executing that input. Error checking is simple and follows Bash conventions.
+**Simple_shell** is a simple command line interpreter based on the Bash shell, written by Brian Fox in 1989. **hella_shell** is intentionally minimalistic and contains functionality for only the most basic shell tasks - accepting input, parsing the input into a command and its arguments, and executing that input. Error checking is simple and follows Bash conventions.
 
 ## Purpose
 
@@ -100,9 +98,6 @@ At this time, there are no known bugs.
 
 ## Authors
 
-Lizzie Turner | [GitHub](https://github.com/lizzieturner) | [Twitter](https://twitter.com/_lizzieturner_)  
-Omar Contreras | [GitHub](https://github.com/aucontraire) | [Twitter](https://twitter.com/_au_contraire)
+Mintesnot Bekele | [GitHub]( https://github.com/Minte123/alx-zero_day.git)
+Omar Contreras | [GitHub]( https://github.com/Assu01/simple_shell.git)
 
-## License
-
-**hella_shell** is open source and free to download and use
