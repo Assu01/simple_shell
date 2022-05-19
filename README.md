@@ -1,103 +1,37 @@
-# simple_Shell
+<<<<<<< HEAD
+# simple_shell
+Custom shell implementation
+=======
+# SIMPLE_SHELL #
+Shell is a program that exposes the Operating System services to a user. The shell receives command inputs written from the the user’s keyboard and passes them to the system to execute them through the kernel. The kernel is usually loaded into a separate area of memory, which is protected from access by application software or other less critical parts of the operating system. It also verifies if the command inputs from the user are correct.
 
 
-## Table of Contents
+## Synopsis ##
+The simple shell project is done in two teams by Asrat Asmelash Tsehaye, Mintesnot Bekele, Software Engineering students at ALX.
+In this project, one will find basic characteristics of the shell sysytem such as; Handling PATHS, implementing BUILT-INS and executing commands
 
-* [Description](#description)
-* [Purpose](#purpose)
-* [Requirements](#requirements)
-* [File Structure](#file-structure)
-* [Usage](#usage)
-* [Examples](#examples)
-* [Bugs](#bugs)
-* [Authors](#authors)
-* [License](#license)
+## Description ##
+Simple Shell is a simple program which receives the keyboard commands and delivers them to the system to be executed. This shell is developed in the programming language C.  some built-in commands implement: exit, env, cd.
+## COMPILATION ##
+This project was compiled using gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
+## allowed functions used ##
 
-## Description
-
-**Simple_shell** is a simple command line interpreter based on the Bash shell, written by Brian Fox in 1989. **hella_shell** is intentionally minimalistic and contains functionality for only the most basic shell tasks - accepting input, parsing the input into a command and its arguments, and executing that input. Error checking is simple and follows Bash conventions.
-
-## Purpose
-
-The purpose of the simple shell project is to understand:
-* how a shell works
-* PID and PPIDs
-* how processes are created
-* the three prototypes of `main`
-* how the shell uses the `PATH` to find and execute programs
-* the `EOF`/"end-of-file" condition
-
-## Requirements
-
-* Must follow [Betty](https://github.com/holbertonschool/Betty/wiki) style and document guidelines
-* Allowed editors: `vi`, `vim`, `emacs`
-* Must have a `README.md` file
-* All header files must be include guarded
-* No more than 5 functions per files
-
-## File Structure
-
-* [AUTHORS](https://github.com/aucontraire/simple_shell/blob/docs/AUTHORS) - list of contributors
-* [check_helpers.c](https://github.com/aucontraire/simple_shell/blob/docs/check_helpers.c) - simple check functions
-  * exit_check - checks if user_input is `exit`
-  * blank_check - checks if user_input is `\n`
-  * env_check - checks if user_input is `env`
-* [env_helpers.c](env_helpers.c) - helper functions related to PATH and other environment variables
-  * `get_path_count` - gets count of path parts
-  * `get_path_array` - tokenizes path to 2d array
-  * `find_path` - finds and checks path for given command
-  * `print_env` - shell builtin that prints current environment
-* [error_helpers.c](error_helpers.c) - helper functions for error message printing
-  * `command_error` - command not found error
-  * `exec_error` - command could not execute error
-* [fork_wait_exec.c](fork_wait_exec.c) - process and execution function
-* [free_array.c](free_array.c) - 2D array freeing function
-* [man_1_simple_shell](man_1_simple_shell) - manual page
-* [parse_input.c](parse_input.c) - command and argument parsing function
-* [shell.c](shell.c) - main function
-* [shell.h](shell.h) - header file
-* [string_helpers.c](string_helpers.c) - helper functions pertaining to string handling
-  * `_strlen` - finds length of a string
-  * `_strcat` - concatenates two strings
-  * `_strdup` - duplicates two strings (including memory management)
-
-## Compilation
-
-```gcc -Wall -Wextra -Werror -pedantic *.c -o hsh```
-
-*GCC 4.8.4 or later only*
-
-## Usage Examples
-
-### Interactive Mode
-
-```c
-~/me$ ./hsh
-hella_shell$ echo & the bunnymen
-& the bunnymen
-hella_shell$ pwd
-/home/me/hella_shell
-hella_shell$
-hella_shell$ exit
-~/me$
-```
-
-### Non-Interactive Mode
-
-```c
-~/me$ cat hella_shell.txt | ./hsh
-got me feelin' hella shell so let's just keep on codin'
-~/me$
-```
-
-## Bugs
-
-At this time, there are no known bugs.
-
-
-## Authors
-
-Mintesnot Bekele | [GitHub]( https://github.com/Minte123/alx-zero_day.git)
-Omar Contreras | [GitHub]( https://github.com/Assu01/simple_shell.git)
-
+~ access (man 2 access)
+~ chdir (man 2 chdir)
+~ close (man 2 close)
+~ closedir (man 3 closedir)
+~ execve (man 2 execve)
+~ exit (man 3 exit)
+~ _exit (man 2 _exit)
+~ fflush (man 3 fflush)
+~ fork (man 2 fork)
+~ free (man 3 free)
+~ getcwd (man 3 getcwd)
+~ getline (man 3 getline)
+~ getpid (man 2 getpid)
+      
+      
+   AUTHORS
+        Asrat Asmelash Tsehaye, Mintesnot Bekele
+>>>>>>> 0430886279f02e2aec88d51b4a50033fc8201d01
